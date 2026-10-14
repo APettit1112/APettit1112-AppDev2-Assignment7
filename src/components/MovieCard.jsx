@@ -1,4 +1,4 @@
-function MovieCard({ movie }) {
+function MovieCard({ movie, isFavorite, onToggleFavorite }) {
   return (
     <div className="movie-card">
       <div className="movie-poster">
@@ -13,7 +13,13 @@ function MovieCard({ movie }) {
           <span className="movie-rating">⭐ {movie.vote_average}</span>
           <span className="movie-year">{movie.release_date.substring(0, 4)}</span>
         </div>
-        <button className="favorite-button">♡ Add to Favorites</button>
+        <button
+          className={`favorite-button${isFavorite ? ' favorited' : ''}`}
+          onClick={() => onToggleFavorite(movie)}
+          aria-pressed={isFavorite}
+        >
+          {isFavorite ? '♥ Remove from Favorites' : '♡ Add to Favorites'}
+        </button>
       </div>
     </div>
   );
