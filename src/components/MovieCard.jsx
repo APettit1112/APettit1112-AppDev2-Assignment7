@@ -3,7 +3,7 @@ function MovieCard({ movie }) {
     <div className="movie-card">
       <div className="movie-poster">
         <img 
-          src="https://placehold.co/300x450/667eea/ffffff?text=Movie+Poster" 
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
           alt={movie.title}
         />
       </div>

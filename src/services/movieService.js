@@ -10,3 +10,15 @@ export async function getPopularMovies() {
 
   return response.json();
 }
+
+export async function searchMovies(query) {
+  const response = await fetch(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to search movies: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
