@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import { MovieProvider } from './contexts/MovieContext';
 import './App.css';
 
 function loadFavorites() {
@@ -44,39 +45,41 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="app">
-        <Header
-          setSearchResults={setSearchResults}
-          setSearchLoading={setSearchLoading}
-          setSearchError={setSearchError}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                searchResults={searchResults}
-                searchLoading={searchLoading}
-                searchError={searchError}
-                favoriteMovies={favoriteMovies}
-                onToggleFavorite={toggleFavorite}
-              />
-            }
+    <MovieProvider>
+      <Router>
+        <div className="app">
+          <Header
+            setSearchResults={setSearchResults}
+            setSearchLoading={setSearchLoading}
+            setSearchError={setSearchError}
           />
-          <Route
-            path="/favorites"
-            element={
-              <Favorites
-                favoriteMovies={favoriteMovies}
-                favoritesError={favoritesError}
-                onToggleFavorite={toggleFavorite}
-              />
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  searchResults={searchResults}
+                  searchLoading={searchLoading}
+                  searchError={searchError}
+                  favoriteMovies={favoriteMovies}
+                  onToggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <Favorites
+                  favoriteMovies={favoriteMovies}
+                  favoritesError={favoritesError}
+                  onToggleFavorite={toggleFavorite}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </MovieProvider>
   );
 };
 
