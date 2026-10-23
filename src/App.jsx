@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import Watchlist from './pages/Watchlist';
 import { MovieProvider } from './contexts/MovieContext';
 import './App.css';
 
@@ -76,6 +77,7 @@ function App() {
                 />
               }
             />
+            <Route path="/watchlist" element={<Watchlist />} />
           </Routes>
         </div>
       </Router>
